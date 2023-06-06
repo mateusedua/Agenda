@@ -1,4 +1,5 @@
 import * as Styles from './style'
+import { useEffect } from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 
 import { userFound } from '../../redux/user/userSlice'
