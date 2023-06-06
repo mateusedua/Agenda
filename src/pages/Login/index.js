@@ -1,14 +1,36 @@
 import * as Styles from './style'
 import { useForm } from 'react-hook-form'
 import { isEmail } from 'validator'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { useEffect } from 'react'
+
+import { loginUser } from '../../redux/user/actions'
+import { userFound } from '../../redux/user/userSlice'
+import { getContatos } from '../../redux/Contato/actions'
 
 const Login = () => {
 
     const { register,handleSubmit,formState:{errors} } = useForm()
+    const dispatch = useDispatch()
+    const history = useHistory()
 
-    const handleEntrar =  () => {
-
+    const handleEntrar =  (data) => {
+        dispatch(loginUser(data))
     }
+
+    useEffect(()=>{
+        const result = JSON.parse(localStorage.getItem('user'))
+
+        if(result){
+            dispatch(userFound(result))
+            dispatch(getContatos({
+                idUsuario: result.id_usuario
+            }))
+
+            history.push('/')
+        }
+    },[])
 
     return (
         <Styles.Container>
