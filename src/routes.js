@@ -1,6 +1,9 @@
 import { Switch,Route } from 'react-router-dom'
+import Login from './pages/Login'
+import Home from './pages/Home'
+import Contato from './pages/Contato'
 
-const routes = () => {
+const Routes = () => {
 
     return(
         <Switch>
@@ -12,4 +15,4 @@ const routes = () => {
     )
 }
 
-export default routes
+export default Routes
