@@ -1,5 +1,6 @@
 import * as Styles from './style'
 import { useLocation } from 'react-router-dom'
+import Header from '../Header';
 import Routes from '../../routes';
 
 const App = () => {
