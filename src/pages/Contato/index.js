@@ -4,6 +4,7 @@ import * as Styles from './style'
 import { Link, useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { isEmail } from 'validator'
+import formatPhone from '../../utils/formatPhone'
 
 const Contato = ({location}) => {
     
@@ -107,7 +108,11 @@ const Contato = ({location}) => {
                 <Styles.Input
                     type='text'
                     placeholder='Particular (opcional)'
-                    {...register("telefone")}
+                    onChange={(event)=>{
+                        const {value} = event.target
+
+                        event.target.value = formatPhone(value)
+                    }}
                 />
                 {
                     /** <Styles.Select
