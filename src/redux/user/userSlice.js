@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUser } from "./actions";
 
+const user = JSON.parse(localStorage.getItem('user'))
+
 const initialState = {
-    currentUser: null
+    currentUser: user ? user : null,
+    validUser: user ? true : false
 }
 
 const userSlice = createSlice({
@@ -12,18 +15,17 @@ const userSlice = createSlice({
         logoutUser: (state, action) => {
             localStorage.removeItem('user')
             state.currentUser = null
-        },
-        userFound: (state, action) => {
-            state.currentUser = action.payload
+            state.validUser = false
         },
     },
     extraReducers: {
         [loginUser.fulfilled]: (state, action) => {
             state.currentUser = action.payload
+            state.validUser = true
         }
     }
 })
 
-export const { logoutUser, userFound } = userSlice.actions
+export const { logoutUser } = userSlice.actions
 
 export default userSlice.reducer

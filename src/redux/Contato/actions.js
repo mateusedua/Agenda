@@ -4,14 +4,15 @@ import request from "../../utils/request";
 export const getContatos = createAsyncThunk(
     'contato/getContatos',
     async (data) => {
-        try {
             const result = await request('http://localhost:5555/api/contatos','POST',data)
-    
-            if(result.status === 200){
-                return result.data
-            }
-        }catch(err){
-            console.log(err)
-        }
+            return result.data
+    }
+)
+
+export const getCategoria = createAsyncThunk(
+    'contato/getCategira',
+    async () => {
+        const result = await request('http://localhost:5555/api/categoria','GET')
+        return result.data
     }
 )
