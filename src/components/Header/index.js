@@ -7,7 +7,6 @@ import { logoutUser } from '../../redux/user/userSlice'
 const Header = () => {
 
     const dispatch = useDispatch()    
-    const history = useHistory()
 
     const { currentUser } = useSelector(rootReducer => rootReducer.userReducer)
 

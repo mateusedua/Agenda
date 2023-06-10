@@ -10,7 +10,6 @@ const Login = () => {
 
     const { register,handleSubmit,formState:{errors} } = useForm()
     const dispatch = useDispatch()
-    const history = useHistory()
 
     const handleEntrar =  (data) => {
         dispatch(loginUser(data))
@@ -43,13 +42,13 @@ const Login = () => {
                 <Styles.Input
                     type='password'
                     placeholder='Senha'
-                    validateErrors={errors?.password ? true : false}
-                    {...register('password', {
+                    validateErrors={errors?.senha ? true : false}
+                    {...register('senha', {
                         required: true
                     })}
                 />
                 {
-                    errors?.password ?
+                    errors?.senha ?
                         <Styles.Text color={'red'}>Senha necessaria</Styles.Text>
                         :
                         null
