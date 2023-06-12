@@ -3,7 +3,7 @@ import { MdDeleteOutline } from 'react-icons/md'
 import { TiEdit } from 'react-icons/ti'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
 import { useHistory } from 'react-router-dom'
-
+import formatPhone from '../../utils/formatPhone'
 
 const CardContato = ({ data }) => {
 
@@ -44,7 +44,7 @@ const CardContato = ({ data }) => {
                                     Telefone :
                                 </Styles.P>
                                 <Styles.P color={'#BCBCBC'} size={'24px'}>
-                                    {data.telefone}
+                                    {formatPhone(data.telefone)}
                                 </Styles.P>
                             </Styles.DivCategory>
                             <Styles.DivCategory>
