@@ -5,13 +5,17 @@ import { Link, useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { isEmail } from 'validator'
 import formatPhone from '../../utils/formatPhone'
+import { useSelector, useDispatch } from 'react-redux'
+import { getCategoria } from '../../redux/Contato/actions'
 
 const Contato = ({location}) => {
     
-    const { register, handleSubmit, watch, formState: { errors }, reset } = useForm()
+    const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const history = useHistory()
+    const dispatch = useDispatch()
     const [nome,setNome] = useState()
 
+    const { categoria } = useSelector(rootReducer => rootReducer.contatoReducer)
 
     const handleCadastrar = async (data) => {
         console.log(data)
@@ -22,22 +26,29 @@ const Contato = ({location}) => {
     }
 
     useEffect(()=>{
+
+        dispatch(getCategoria())
+
         if(history.location.pathname === '/AlterarContato'){
 
             const result = location.state.data
             console.log(location.state.data)
 
+            console.log(result)
             setNome(result.nome)
-            
+            setDefaultValue({
+                idcategoria: result
+            })
+
             reset({
                 nome: result.nome,
                 email: result.email,
                 url_linkedin: result.url_linkedin,
                 url_github: result.url_github,
-                telefone: result.telefone,
-                categoria: result.categoria
+                telefone: formatPhone(result.telefone)
             })
         }
+        console.log(categoria)
     },[])
     
     return(
@@ -108,15 +119,14 @@ const Contato = ({location}) => {
                 <Styles.Input
                     type='text'
                     placeholder='Particular (opcional)'
+                    {...register("telefone")}
                     onChange={(event)=>{
-                        const {value} = event.target
-
+                        const { value } = event.target
                         event.target.value = formatPhone(value)
                     }}
                 />
-                {
-                    /** <Styles.Select
-                    {...register("categoria", { validate: (value) => value !== "none" })}
+                <Styles.Select
+                    {...register("categoria", defaultValue = {} { validate: (value) => value !== "none" })}
                     defaultValue="none"
                     validateSelect={errors?.categoria?.type === "validate" ? true : false}
                 >
@@ -124,28 +134,27 @@ const Contato = ({location}) => {
                         Categoria
                     </option>
                     {
-                        categoria?.map((item) => {
+                        categoria?.map((item, index) => {
                             return (
-                                <option value={item.categoria}>{item.categoria}</option>
+                                <option key={index} value={item.idcategoria}>{item.nome}</option>
                             )
                         })
                     }
                 </Styles.Select>
-                
-                errors?.categoria?.type === "validate" ?
+                {
+                    errors?.categoria?.type === "validate" ?
                     <Styles.Text color={"red"}>Categoria necessaria</Styles.Text>
                     :
-                    null
-            
-                */
-            }
+                        null
+                }
+
                 {
                     history.location.pathname === "/NovoContato" ?
                         <Styles.Button onClick={() => handleSubmit(handleCadastrar)()}>
                             Cadastrar
                         </Styles.Button>
                     :
-                    <Styles.Button onClick={()=>handleSubmit(handleAlterar)}>
+                        <Styles.Button onClick={() => handleSubmit(handleAlterar)()}>
                         Alterar Contato
                     </Styles.Button>
                 }

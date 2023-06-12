@@ -41,7 +41,7 @@ const Home = () => {
             </Styles.Header>
             <Styles.Main>
                 {
-                    <CardContato data={data}/>
+                    <CardContato data={data} />
                 }
             </Styles.Main>
         </Styles.Container>
