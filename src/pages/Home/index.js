@@ -1,15 +1,27 @@
 import * as Styles from './style'
 import { useHistory } from 'react-router-dom'
 import CardContato from '../../components/CardContato'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { getContatos } from '../../redux/Contato/actions'
 
 const Home = () => {
 
     const history = useHistory()
+    const dispatch = useDispatch()
 
     const { data } = useSelector(rootReducer => rootReducer.contatoReducer)
 
-    console.log(data)
+
+    useEffect(() => {
+        const result = JSON.parse(localStorage.getItem('user'))
+
+        if (result) {
+            dispatch(getContatos({
+                idUsuario: result.id_usuario
+            }))
+        }
+    }, [dispatch])
 
     const handleClick = () => {
         history.push("/NovoContato")
