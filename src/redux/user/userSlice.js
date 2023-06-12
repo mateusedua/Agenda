@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isPending } from "@reduxjs/toolkit";
 import { loginUser } from "./actions";
 
 
@@ -19,6 +19,7 @@ const userSlice = createSlice({
         userFound: (state, action) => {
             state.currentUser = action.payload
             state.validUser = true
+            state.isPending = false
         }
     },
     extraReducers: (builder) => {

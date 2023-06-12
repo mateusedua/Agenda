@@ -1,10 +1,11 @@
 import * as Styles from './style'
+import { useDispatch,useSelector } from 'react-redux'
 import { logoutUser } from '../../redux/user/userSlice'
 import { useDispatch } from 'react-redux'
 
 const Header = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch()    
 
     const handleSair = () => {
         dispatch(logoutUser())

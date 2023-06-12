@@ -126,7 +126,7 @@ const Contato = ({location}) => {
                     }}
                 />
                 <Styles.Select
-                    {...register("categoria", defaultValue = {} { validate: (value) => value !== "none" })}
+                    {...register("categoria", { validate: (value) => value !== "none" })}
                     defaultValue="none"
                     validateSelect={errors?.categoria?.type === "validate" ? true : false}
                 >

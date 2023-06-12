@@ -1,12 +1,15 @@
-import { Switch, Route, BrowserRouter } from 'react-router-dom'
-import Login from './pages/Login'
-import Home from './pages/Home'
-import Contato from './pages/Contato'
-import Header from './components/Header'
-import { useSelector } from 'react-redux'
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import Contato from './pages/Contato';
+import Header from './components/Header';
+import { useSelector } from 'react-redux';
+
 const Routes = () => {
 
     const { validUser } = useSelector(rootReducer => rootReducer.userReducer)
+
+
 
     return (
         <>
