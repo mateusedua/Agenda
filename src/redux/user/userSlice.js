@@ -3,7 +3,6 @@ import { loginUser } from "./actions";
 
 
 const initialState = {
-    currentUser: null,
     validUser: false
 }
 
@@ -13,18 +12,15 @@ const userSlice = createSlice({
     reducers: {
         logoutUser: (state, action) => {
             localStorage.removeItem('user')
-            state.currentUser = null
             state.validUser = false
         },
         userFound: (state, action) => {
-            state.currentUser = action.payload
             state.validUser = true
             state.isPending = false
         }
     },
     extraReducers: (builder) => {
         builder.addCase(loginUser.fulfilled, (state, action) => {
-            state.currentUser = action.payload
             state.validUser = true
         })
     }
