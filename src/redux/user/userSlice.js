@@ -3,14 +3,8 @@ import { loginUser } from "./actions";
 
 
 const initialState = {
-<<<<<<< HEAD
-    currentUser:  user ? user : null,
-    validUser: user ? true : false,
-    isPending: false
-=======
     currentUser: null,
     validUser: false
->>>>>>> origin/main
 }
 
 const userSlice = createSlice({
@@ -22,16 +16,7 @@ const userSlice = createSlice({
             state.currentUser = null
             state.validUser = false
         },
-<<<<<<< HEAD
-    },
-    extraReducers: {
-        [loginUser.pending]:(state,action) => {
-            state.isPending = true
-        },
-        [loginUser.fulfilled]: (state, action) => {
-=======
         userFound: (state, action) => {
->>>>>>> origin/main
             state.currentUser = action.payload
             state.validUser = true
             state.isPending = false
@@ -45,10 +30,6 @@ const userSlice = createSlice({
     }
 })
 
-<<<<<<< HEAD
-export const { logoutUser,userFound } = userSlice.actions
-=======
 export const { logoutUser, userFound } = userSlice.actions
->>>>>>> origin/main
 
 export default userSlice.reducer

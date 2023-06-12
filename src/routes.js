@@ -1,35 +1,16 @@
-<<<<<<< HEAD
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Contato from './pages/Contato';
 import Header from './components/Header';
-import { useSelector,useDispatch } from 'react-redux';
-import { getContatos } from './redux/Contato/actions';
-import { userFound } from './redux/user/userSlice';
+import { useSelector } from 'react-redux';
 
-=======
-import { Switch, Route, BrowserRouter } from 'react-router-dom'
-import Login from './pages/Login'
-import Home from './pages/Home'
-import Contato from './pages/Contato'
-import Header from './components/Header'
-import { useSelector } from 'react-redux'
->>>>>>> origin/main
 const Routes = () => {
 
-    const dispatch = useDispatch()
-    const { validUser,currentUser } = useSelector(rootReducer => rootReducer.userReducer)
+    const { validUser } = useSelector(rootReducer => rootReducer.userReducer)
 
-<<<<<<< HEAD
-    if(validUser){
-        dispatch(getContatos({
-            idUsuario: currentUser.id_usuario
-        }))
-    }
 
-=======
->>>>>>> origin/main
+
     return (
         <>
             {
