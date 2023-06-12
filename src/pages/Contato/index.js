@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { isEmail } from 'validator'
 import formatPhone from '../../utils/formatPhone'
 import { useSelector, useDispatch } from 'react-redux'
-import { getCategoria } from '../../redux/Contato/actions'
+import { getCategoria, cadastrarContato } from '../../redux/Contato/actions'
 
 const Contato = ({location}) => {
     
@@ -15,15 +15,21 @@ const Contato = ({location}) => {
     const dispatch = useDispatch()
     const [nome,setNome] = useState()
 
-    const { categoria } = useSelector(rootReducer => rootReducer.contatoReducer)
+    const { categoria, redirect } = useSelector(rootReducer => rootReducer.contatoReducer)
 
     const handleCadastrar = async (data) => {
-        console.log(data)
+        dispatch(cadastrarContato({
+            data: {
+                data: data,
+                idUser: location.state.idUser
+            }
+        }))
     }
 
     const handleAlterar = async (data) =>{
         console.log(data)    
     }
+
 
     useEffect(()=>{
 
@@ -34,11 +40,7 @@ const Contato = ({location}) => {
             const result = location.state.data
             console.log(location.state.data)
 
-            console.log(result)
             setNome(result.nome)
-            setDefaultValue({
-                idcategoria: result
-            })
 
             reset({
                 nome: result.nome,
@@ -48,8 +50,11 @@ const Contato = ({location}) => {
                 telefone: formatPhone(result.telefone)
             })
         }
-        console.log(categoria)
-    },[])
+    }, [])
+
+    if (redirect) {
+        return history.push("/")
+    }
     
     return(
         <Styles.Container>

@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { getContatos } from '../../redux/Contato/actions'
 
 const Home = () => {
+    const result = JSON.parse(localStorage.getItem('user'))
 
     const history = useHistory()
     const dispatch = useDispatch()
@@ -14,7 +15,6 @@ const Home = () => {
 
 
     useEffect(() => {
-        const result = JSON.parse(localStorage.getItem('user'))
 
         if (result) {
             dispatch(getContatos({
@@ -24,7 +24,10 @@ const Home = () => {
     }, [dispatch])
 
     const handleClick = () => {
-        history.push("/NovoContato")
+        history.push({
+            pathname: "/NovoContato",
+            state: { idUser: result.id_usuario }
+        })
     }
 
     return (
