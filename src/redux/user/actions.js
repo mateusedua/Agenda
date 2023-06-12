@@ -14,9 +14,6 @@ export const loginUser = createAsyncThunk(
                 localStorage.setItem('user',JSON.stringify(result.data[0]))
             }
 
-            return result.data
-
-            
 
         }catch(err){
             console.log(err)

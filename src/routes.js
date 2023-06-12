@@ -9,8 +9,6 @@ const Routes = () => {
 
     const { validUser } = useSelector(rootReducer => rootReducer.userReducer)
 
-
-
     return (
         <>
             {
