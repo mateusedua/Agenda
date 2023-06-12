@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getContatos } from "./actions";
-import { getCategoria } from "./actions";
-
+import { getContatos, getCategoria, cadastrarContato } from "./actions";
 const initialState = {
     data: [],
-    categoria: []
+    categoria: [],
+    redirect: false
 }
 
 export const contatoSlice = createSlice({
@@ -16,6 +15,9 @@ export const contatoSlice = createSlice({
         },
         [getCategoria.fulfilled] : (state,action) => {
             state.categoria = action.payload
+        },
+        [cadastrarContato.fulfilled]: (state, action) => {
+            state.redirect = true
         }
     }
 })
