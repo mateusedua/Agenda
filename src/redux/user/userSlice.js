@@ -1,11 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isPending } from "@reduxjs/toolkit";
 import { loginUser } from "./actions";
 
 const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
-    currentUser: user ? user : null,
-    validUser: user ? true : false
+    currentUser:  user ? user : null,
+    validUser: user ? true : false,
+    isPending: false
 }
 
 const userSlice = createSlice({
@@ -19,13 +20,17 @@ const userSlice = createSlice({
         },
     },
     extraReducers: {
+        [loginUser.pending]:(state,action) => {
+            state.isPending = true
+        },
         [loginUser.fulfilled]: (state, action) => {
             state.currentUser = action.payload
             state.validUser = true
+            state.isPending = false
         }
     }
 })
 
-export const { logoutUser } = userSlice.actions
+export const { logoutUser,userFound } = userSlice.actions
 
 export default userSlice.reducer
