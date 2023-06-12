@@ -1,22 +1,20 @@
 import * as Styles from './style'
-import { useEffect } from 'react'
-import { useDispatch,useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import { logoutUser } from '../../redux/user/userSlice'
+import { useDispatch } from 'react-redux'
 
 const Header = () => {
 
-    const dispatch = useDispatch()    
-
-    const { currentUser } = useSelector(rootReducer => rootReducer.userReducer)
+    const dispatch = useDispatch()
 
     const handleSair = () => {
         dispatch(logoutUser())
     }
 
+    const user = JSON.parse(localStorage.getItem('user'))
+
     return(
         <Styles.Container>
-            <Styles.Text>Olá, {currentUser?.nome}</Styles.Text>
+            <Styles.Text>Olá, {user?.nome}</Styles.Text>
             <Styles.Button onClick={handleSair}>
                 Sair
             </Styles.Button>
