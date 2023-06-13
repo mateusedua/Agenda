@@ -15,6 +15,7 @@ export const Section = styled.section`
     width: 50%;
     height: 100%;
     display: flex;
+    align-items: center;
     justify-content: ${props=> props.justify ? props.justify : 'none'};
     align-items: ${props=>props.items ? props.items : 'none'};
 `

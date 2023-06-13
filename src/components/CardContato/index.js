@@ -4,10 +4,13 @@ import { TiEdit } from 'react-icons/ti'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
 import { useHistory } from 'react-router-dom'
 import formatPhone from '../../utils/formatPhone'
+import { useDispatch } from 'react-redux'
+import { deleteContato } from '../../redux/Contato/actions'
 
 const CardContato = ({ data }) => {
 
     const history = useHistory()
+    const dispatch = useDispatch()
 
     const handleAlterar = (data) => {
         history.push({
@@ -17,13 +20,15 @@ const CardContato = ({ data }) => {
     }
 
     const handleDelete = (data) => {
-        console.log(data)
+        dispatch(deleteContato({
+            idcontato: data.contatos_idcontatos
+        }))
     }
 
     return (
-        data.map((data) => {
+        data.map((data, index) => {
             return (
-                <Styles.MainCard>
+                <Styles.MainCard key={index}>
                     <Styles.Section>
                         <Styles.SectionInformationHeader>
                             <Styles.DivCategory>
@@ -40,12 +45,19 @@ const CardContato = ({ data }) => {
                                 </Styles.P>
                             </Styles.DivCategory>
                             <Styles.DivCategory>
+                                {
+                                    data.telefone ?
+                                        <>
                                 <Styles.P color={'#5061FC'} size={'24px'}>
                                     Telefone :
                                 </Styles.P>
                                 <Styles.P color={'#BCBCBC'} size={'24px'}>
                                     {formatPhone(data.telefone)}
                                 </Styles.P>
+                                        </>
+                                        :
+                                        null
+                                }
                             </Styles.DivCategory>
                             <Styles.DivCategory>
                                 {
