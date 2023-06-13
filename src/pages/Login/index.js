@@ -1,8 +1,7 @@
 import * as Styles from './style'
 import { useForm } from 'react-hook-form'
 import { isEmail } from 'validator'
-import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { loginUser } from '../../redux/user/actions'
 
@@ -10,6 +9,8 @@ const Login = () => {
 
     const { register,handleSubmit,formState:{errors} } = useForm()
     const dispatch = useDispatch()
+
+    const { userNotFound } = useSelector(rootReducer => rootReducer.userReducer)
 
     const handleEntrar =  (data) => {
         dispatch(loginUser(data))
@@ -50,6 +51,12 @@ const Login = () => {
                 {
                     errors?.senha ?
                         <Styles.Text color={'red'}>Senha necessaria</Styles.Text>
+                        :
+                        null
+                }
+                {
+                    userNotFound ?
+                        <Styles.Text color={'red'}>Usuário não encontrado</Styles.Text>
                         :
                         null
                 }
