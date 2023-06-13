@@ -6,7 +6,8 @@ import { useForm } from 'react-hook-form'
 import { isEmail } from 'validator'
 import formatPhone from '../../utils/formatPhone'
 import { useSelector, useDispatch } from 'react-redux'
-import { getCategoria, cadastrarContato } from '../../redux/Contato/actions'
+import { getCategoria, cadastrarContato, alterarContato } from '../../redux/Contato/actions'
+import { redirectState } from '../../redux/Contato/contatoSlice'
 
 const Contato = ({location}) => {
     
@@ -17,7 +18,7 @@ const Contato = ({location}) => {
 
     const { categoria, redirect } = useSelector(rootReducer => rootReducer.contatoReducer)
 
-    const handleCadastrar = async (data) => {
+    const handleCadastrar = (data) => {
         dispatch(cadastrarContato({
             data: {
                 data: data,
@@ -26,8 +27,14 @@ const Contato = ({location}) => {
         }))
     }
 
-    const handleAlterar = async (data) =>{
-        console.log(data)    
+    const handleAlterar = (data) => {
+
+        dispatch(alterarContato({
+            data: {
+                data: data,
+                idContato: location.state.data.contatos_idcontatos
+            }
+        }))
     }
 
 
@@ -53,6 +60,7 @@ const Contato = ({location}) => {
     }, [])
 
     if (redirect) {
+        dispatch(redirectState())
         return history.push("/")
     }
     

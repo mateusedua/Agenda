@@ -11,7 +11,7 @@ const Home = () => {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const { data } = useSelector(rootReducer => rootReducer.contatoReducer)
+    const { data, redirect } = useSelector(rootReducer => rootReducer.contatoReducer)
 
 
     useEffect(() => {
