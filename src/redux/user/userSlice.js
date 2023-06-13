@@ -1,9 +1,10 @@
-import { createSlice, isPending } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { loginUser } from "./actions";
 
 
 const initialState = {
-    validUser: false
+    validUser: false,
+    userNotFound: false
 }
 
 const userSlice = createSlice({
@@ -21,7 +22,10 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(loginUser.fulfilled, (state, action) => {
-            state.validUser = true
+            if (action.payload === 200) {
+                state.validUser = true
+            }
+            state.userNotFound = true
         })
     }
 })
