@@ -9,6 +9,12 @@ const Routes = () => {
 
     const { validUser } = useSelector(rootReducer => rootReducer.userReducer)
 
+    console.log(validUser)
+
+    if (!validUser) {
+        window.location.href = "http://localhost:3000"
+    }
+
     return (
         <>
             {
@@ -24,10 +30,7 @@ const Routes = () => {
                     </BrowserRouter>
                 )
             }
-            {
-                !validUser &&
-                <Login />
-            }
+
         </>
     )
 }

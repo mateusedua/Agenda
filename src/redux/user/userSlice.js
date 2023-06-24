@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUser } from "./actions";
 
+const url = new URL(window.location.href);
+const params = new URLSearchParams(url.search);
+
+localStorage.setItem("user", params)
 
 const initialState = {
     validUser: false,
