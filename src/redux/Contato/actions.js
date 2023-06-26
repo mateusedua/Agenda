@@ -24,6 +24,7 @@ export const cadastrarContato = createAsyncThunk(
     'contato/cadastrarContato',
     async (data) => {
         await request('http://localhost:5555/api/cadastrarContato', 'POST', data)
+
     }
 
 )

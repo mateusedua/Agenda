@@ -2,17 +2,28 @@ import * as Styles from './style'
 import { useHistory } from 'react-router-dom'
 import CardContato from '../../components/CardContato'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getContatos } from '../../redux/Contato/actions'
 
 const Home = () => {
-    const result = JSON.parse(localStorage.getItem('user'))
 
     const history = useHistory()
     const dispatch = useDispatch()
 
     const { data, redirect } = useSelector(rootReducer => rootReducer.contatoReducer)
 
+    const [pesquisar, setPesquisar] = useState('')
+    const result = JSON.parse(localStorage.getItem('user'))
+    const [resultado, setResultado] = useState(data)
+
+    const handlePesquisar = (value) => {
+        setPesquisar(value)
+        const result = Array.from(data).filter((valor) => {
+            return valor.nome.toLowerCase().includes(value.toLowerCase())
+        })
+
+        setResultado(result)
+    }
 
     useEffect(() => {
 
@@ -34,7 +45,7 @@ const Home = () => {
         <Styles.Container>
             <Styles.Header>
                 <Styles.SectionInputSelect>
-                    <Styles.Input type="text" placeholder="Pesquisar contato ..." />
+                    <Styles.Input type="text" placeholder="Pesquisar contato ..." value={pesquisar} onChange={event => handlePesquisar(event.target.value)} />
                 </Styles.SectionInputSelect>
                 <Styles.SectionButtonHeader>
                     <Styles.Button onClick={handleClick}>
