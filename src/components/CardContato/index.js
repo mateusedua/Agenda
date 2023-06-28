@@ -20,8 +20,9 @@ const CardContato = ({ data }) => {
     }
 
     const handleDelete = (data) => {
+
         dispatch(deleteContato({
-            idcontato: data.contatos_idcontatos
+            idcontato: data.id_contatos
         }))
     }
 

@@ -11,11 +11,9 @@ const Header = () => {
         dispatch(logoutUser())
     }
 
-    const user = JSON.parse(localStorage.getItem('user'))
-
     return(
         <Styles.Container>
-            <Styles.Text>Olá, {user?.nome}</Styles.Text>
+            <Styles.Text>Olá</Styles.Text>
             <Styles.Button onClick={handleSair}>
                 Sair
             </Styles.Button>

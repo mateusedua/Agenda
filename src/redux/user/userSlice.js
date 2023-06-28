@@ -1,10 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUser } from "./actions";
 
+let token = window.location.search
+
+if (token !== '') {
+    localStorage.setItem('user', JSON.stringify(token))
+}
+
+if (token === '') {
+    token = localStorage.getItem('user')
+}
 
 const initialState = {
-    validUser: false,
-    userNotFound: false
+    validUser: token ? true : false,
+    userNotFound: false,
+    token: token
 }
 
 const userSlice = createSlice({
