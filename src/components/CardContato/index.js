@@ -24,6 +24,7 @@ const CardContato = ({ data }) => {
         dispatch(deleteContato({
             idcontato: data.id_contatos
         }))
+
     }
 
     return (

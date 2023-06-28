@@ -12,7 +12,7 @@ export const contatoSlice = createSlice({
     initialState,
     reducers: {
         redirectState: (state, action) => {
-            state.redirect = false
+            state.redirect = true
         }
     },
     extraReducers:{
