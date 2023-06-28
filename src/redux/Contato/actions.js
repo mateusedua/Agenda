@@ -2,7 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import request from "../../utils/request";
 import { useDispatch } from "react-redux";
 
-const user = JSON.parse(localStorage.getItem('user'))
 
 export const getContatos = createAsyncThunk(
     'contato/getContatos',
@@ -38,10 +37,7 @@ export const alterarContato = createAsyncThunk(
 
 export const deleteContato = createAsyncThunk(
     'contato/deleteContato',
-    async (data, { dispatch }) => {
+    async (data) => {
         await request('http://localhost:5555/api/deleteContato', 'DELETE', data)
-        return dispatch(getContatos({
-            idUsuario: user.id_usuario
-        }))
     }
 )

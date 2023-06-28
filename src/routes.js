@@ -4,15 +4,13 @@ import Home from './pages/Home';
 import Contato from './pages/Contato';
 import Header from './components/Header';
 import { useSelector } from 'react-redux';
-
 const Routes = () => {
+
 
     const { validUser } = useSelector(rootReducer => rootReducer.userReducer)
 
-    console.log(validUser)
-
     if (!validUser) {
-        window.location.href = "http://localhost:3000"
+        window.location.href = "http://localhost:5555/"
     }
 
     return (

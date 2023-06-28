@@ -9,11 +9,11 @@ import { userFound } from './redux/user/userSlice';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
-const result = JSON.parse(localStorage.getItem('user'));
+/*const result = JSON.parse(localStorage.getItem('user'));
 
 if (result) {
   store.dispatch(userFound(result))
-}
+}*/
 
 
 root.render(

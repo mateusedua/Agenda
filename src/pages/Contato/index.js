@@ -29,10 +29,12 @@ const Contato = ({location}) => {
 
     const handleAlterar = (data) => {
 
+        console.log(data)
+
         dispatch(alterarContato({
             data: {
                 data: data,
-                idContato: location.state.data.contatos_idcontatos
+                idContato: location.state.data.id_contatos
             }
         }))
     }
@@ -149,7 +151,7 @@ const Contato = ({location}) => {
                     {
                         categoria?.map((item, index) => {
                             return (
-                                <option key={index} value={item.idcategoria}>{item.nome}</option>
+                                <option key={index} value={item.id_categoria}>{item.nome}</option>
                             )
                         })
                     }
