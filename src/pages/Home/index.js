@@ -15,17 +15,7 @@ const Home = () => {
 
     const [pesquisar, setPesquisar] = useState('')
     const result = JSON.parse(localStorage.getItem('user'))
-    const [resultado, setResultado] = useState(data)
     const [idUser, setIdUser] = useState(null)
-
-    const handlePesquisar = (value) => {
-        setPesquisar(value)
-        const result = Array.from(data).filter((valor) => {
-            return valor.nome.toLowerCase().includes(value.toLowerCase())
-        })
-
-        setResultado(result)
-    }
 
     useEffect(() => {
 
@@ -44,8 +34,8 @@ const Home = () => {
         getData()
     }, [dispatch])
 
+
     const handleClick = () => {
-        console.log(idUser)
         history.push({
             pathname: "/NovoContato",
             state: { idUser: idUser }
@@ -56,7 +46,7 @@ const Home = () => {
         <Styles.Container>
             <Styles.Header>
                 <Styles.SectionInputSelect>
-                    <Styles.Input type="text" placeholder="Pesquisar contato ..." value={pesquisar} onChange={event => handlePesquisar(event.target.value)} />
+                    <Styles.Input type="text" placeholder="Pesquisar contato ..." value={pesquisar} onChange={event => setPesquisar(event.target.value)} />
                 </Styles.SectionInputSelect>
                 <Styles.SectionButtonHeader>
                     <Styles.Button onClick={handleClick}>
@@ -66,7 +56,7 @@ const Home = () => {
             </Styles.Header>
             <Styles.Main>
                 {
-                    <CardContato data={data} />
+                    <CardContato data={data.filter(item => (item.contato.nome.toLowerCase().indexOf(pesquisar.toLocaleLowerCase()) > -1))} />
                 }
             </Styles.Main>
         </Styles.Container>
