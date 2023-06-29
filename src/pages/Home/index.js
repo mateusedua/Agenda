@@ -11,7 +11,7 @@ const Home = () => {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const { data, redirect } = useSelector(rootReducer => rootReducer.contatoReducer)
+    const { data } = useSelector(rootReducer => rootReducer.contatoReducer)
 
     const [pesquisar, setPesquisar] = useState('')
     const result = JSON.parse(localStorage.getItem('user'))
