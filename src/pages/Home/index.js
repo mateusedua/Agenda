@@ -18,7 +18,6 @@ const Home = () => {
     const [resultado, setResultado] = useState(data)
     const [idUser, setIdUser] = useState(null)
 
-
     const handlePesquisar = (value) => {
         setPesquisar(value)
         const result = Array.from(data).filter((valor) => {

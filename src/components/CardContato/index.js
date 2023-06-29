@@ -9,6 +9,8 @@ import { deleteContato } from '../../redux/Contato/actions'
 
 const CardContato = ({ data }) => {
 
+    console.log(data[0].contato)
+
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -35,26 +37,26 @@ const CardContato = ({ data }) => {
                         <Styles.SectionInformationHeader>
                             <Styles.DivCategory>
                                 <Styles.P size={'28px'} color={'#222222'} weight={'bold'}>
-                                    {data.nome}
+                                    {data.contato.nome}
                                 </Styles.P>
                                 <Styles.P size={'20px'} bg={'#E0E3FF'} color={'#5061FC'} weight={'bold'} pd={'10px'} br={'5px'}>
-                                    {data.categoria}
+                                    {data.contato.categorium.nome}
                                 </Styles.P>
                             </Styles.DivCategory>
                             <Styles.DivCategory>
                                 <Styles.P color={'#BCBCBC'} size={'24px'}>
-                                    {data.email}
+                                    {data.contato.email}
                                 </Styles.P>
                             </Styles.DivCategory>
                             <Styles.DivCategory>
                                 {
-                                    data.telefone ?
+                                    data.contato.telefone ?
                                         <>
                                 <Styles.P color={'#5061FC'} size={'24px'}>
                                     Telefone :
                                 </Styles.P>
                                 <Styles.P color={'#BCBCBC'} size={'24px'}>
-                                    {formatPhone(data.telefone)}
+                                                {formatPhone(data.contato.telefone)}
                                 </Styles.P>
                                         </>
                                         :
@@ -64,7 +66,7 @@ const CardContato = ({ data }) => {
                             <Styles.DivCategory>
                                 {
                                     data.url_linkedin ?
-                                        <Styles.Redirect href={data.url_linkedin}>
+                                        <Styles.Redirect href={data.contato.url_linkedin}>
                                             <AiFillLinkedin style={{
                                                 width: 30,
                                                 height: 30
@@ -75,7 +77,7 @@ const CardContato = ({ data }) => {
                                 }
                                 {
                                     data.url_github ?
-                                        <Styles.Redirect href={data.url_github}>
+                                        <Styles.Redirect href={data.contato.url_github}>
                                             <AiFillGithub style={{
                                                 width: 30,
                                                 height: 30
