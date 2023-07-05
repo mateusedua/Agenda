@@ -1,20 +1,17 @@
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import Login from './pages/Login';
 import Home from './pages/Home';
 import Contato from './pages/Contato';
 import Header from './components/Header';
+import Perfil from './pages/Perfil';
+import Login from './pages/Login'
 import { useSelector } from 'react-redux';
 const Routes = () => {
 
-
-    const { validUser } = useSelector(rootReducer => rootReducer.userReducer)
-
-    if (!validUser) {
-        window.location.href = "http://localhost:5555/"
-    }
+    const { validUser } = useSelector(state => state.userReducer)
 
     return (
         <>
+
             {
                 validUser &&
                 (
@@ -24,9 +21,14 @@ const Routes = () => {
                             <Route exact path="/" component={Home} />
                             <Route path="/NovoContato" component={Contato} />
                             <Route path="/AlterarContato" component={Contato} />
+                            <Route path="/Perfil" component={Perfil} />
                         </Switch>
                     </BrowserRouter>
                 )
+            }
+            {
+                !validUser &&
+                <Login />
             }
 
         </>

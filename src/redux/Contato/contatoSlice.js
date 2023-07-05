@@ -36,4 +36,4 @@ export const contatoSlice = createSlice({
 
 export const { redirectState } = contatoSlice.actions
 
-export default contatoSlice.reducer 
+export default contatoSlice.reducer

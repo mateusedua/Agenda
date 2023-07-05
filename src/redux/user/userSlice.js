@@ -1,20 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser } from "./actions";
+import { dataUser, loginUser } from "./actions";
+import request from "../../utils/request";
 
-let token = window.location.search
 
-if (token !== '') {
-    localStorage.setItem('user', JSON.stringify(token))
+const user = localStorage.getItem('user')
+
+let result = ''
+
+if (user) {
+    result = await request('http://localhost:5555/api/userFound', 'POST', {
+        data: user
+    })
 }
 
-if (token === '') {
-    token = localStorage.getItem('user')
-}
 
 const initialState = {
-    validUser: token ? true : false,
+    validUser: result ? true : false,
     userNotFound: false,
-    token: token
+    dataUser: {}
 }
 
 const userSlice = createSlice({
@@ -37,6 +40,9 @@ const userSlice = createSlice({
             }
             state.userNotFound = true
         })
+            .addCase(dataUser.fulfilled, (state, action) => {
+                state.dataUser = action.payload
+            })
     }
 })
 
