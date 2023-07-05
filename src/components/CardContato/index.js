@@ -9,8 +9,6 @@ import { deleteContato } from '../../redux/Contato/actions'
 
 const CardContato = ({ data }) => {
 
-    console.log(data[0].contato)
-
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -26,7 +24,6 @@ const CardContato = ({ data }) => {
         dispatch(deleteContato({
             idcontato: data.id_contatos
         }))
-
     }
 
     return (

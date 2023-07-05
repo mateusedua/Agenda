@@ -22,3 +22,19 @@ export const loginUser = createAsyncThunk(
         }
     }
 )
+
+
+export const dataUser = createAsyncThunk(
+    'user/dataUser',
+    async (data) => {
+        try {
+            const result = await request('http://localhost:5555/api/userData', 'POST', data)
+
+            if (result.status === 200) {
+                return result.data
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+)
