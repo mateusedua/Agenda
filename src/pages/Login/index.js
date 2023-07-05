@@ -8,14 +8,10 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const { userNotFound } = useSelector(rootReducer => rootReducer.userReducer)
-    const [loginUser, { data: result }] = useLoginUserMutation()
+    const [loginUser] = useLoginUserMutation()
 
     const handleEntrar = async (data) => {
         await loginUser(data)
-    }
-
-    if (result) {
-        localStorage.setItem('user', result)
     }
 
     return (
