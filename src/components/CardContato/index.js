@@ -62,7 +62,7 @@ const CardContato = ({ data }) => {
                             </Styles.DivCategory>
                             <Styles.DivCategory>
                                 {
-                                    data.url_linkedin ?
+                                    data.contato.url_linkedin ?
                                         <Styles.Redirect href={data.contato.url_linkedin}>
                                             <AiFillLinkedin style={{
                                                 width: 30,
@@ -73,7 +73,7 @@ const CardContato = ({ data }) => {
                                         null
                                 }
                                 {
-                                    data.url_github ?
+                                    data.contato.url_github ?
                                         <Styles.Redirect href={data.contato.url_github}>
                                             <AiFillGithub style={{
                                                 width: 30,
