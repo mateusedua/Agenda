@@ -18,14 +18,16 @@ export const apiSlice = createApi({
                 url: "/api/cadastrarContato",
                 method: "POST",
                 body: data
-            })
+            }),
+            invalidatesTags: ['Post']
         }),
         alterarContato: builder.mutation({
             query: (data) => ({
                 url: "/api/alterarContato",
-                method: "POST",
+                method: "PUT",
                 body: data
-            })
+            }),
+            invalidatesTags: ['Post']
         }),
         getContatos: builder.query({
             query: (data) => ({

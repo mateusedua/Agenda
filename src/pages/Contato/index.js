@@ -11,8 +11,6 @@ import { useGetCategoriaQuery } from '../../redux/apiSlice'
 import Swal from 'sweetalert2'
 
 const Contato = ({location}) => {
-    
-    console.log(location.state.data)
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const { data: categoria } = useGetCategoriaQuery()
