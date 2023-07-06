@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { dataUser, loginUser } from "./actions";
 import request from "../../utils/request";
-
+import { apiSlice } from "../apiSlice";
 
 const user = localStorage.getItem('user')
 
@@ -17,6 +17,7 @@ if (user) {
 const initialState = {
     validUser: result ? true : false,
     userNotFound: false,
+    user: result.data,
     dataUser: {}
 }
 
@@ -42,6 +43,16 @@ const userSlice = createSlice({
         })
             .addCase(dataUser.fulfilled, (state, action) => {
                 state.dataUser = action.payload
+            })
+            .addMatcher(apiSlice.endpoints.loginUser.matchFulfilled, (state, action) => {
+                localStorage.setItem('user', action.payload)
+                state.validUser = true
+            })
+            .addMatcher(apiSlice.endpoints.loginUser.matchRejected, (state, action) => {
+                state.userNotFound = true
+            })
+            .addMatcher(apiSlice.endpoints.loginUser.matchPending, (state, action) => {
+                state.userNotFound = false
             })
     }
 })

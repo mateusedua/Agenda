@@ -2,20 +2,16 @@ import * as Styles from './style'
 import { useForm } from 'react-hook-form'
 import { isEmail } from 'validator'
 import { useSelector } from 'react-redux'
-import { useLoginUserMutation } from '../../redux/user/apiSlice'
+import { useLoginUserMutation } from '../../redux/apiSlice'
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const { userNotFound } = useSelector(rootReducer => rootReducer.userReducer)
-    const [loginUser, { data: result }] = useLoginUserMutation()
+    const [loginUser, { isSuccess }] = useLoginUserMutation()
 
     const handleEntrar = async (data) => {
         await loginUser(data)
-    }
-
-    if (result) {
-        localStorage.setItem('user', result)
     }
 
     return (
