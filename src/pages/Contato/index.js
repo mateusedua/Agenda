@@ -6,18 +6,20 @@ import { useForm } from 'react-hook-form'
 import { isEmail } from 'validator'
 import formatPhone from '../../utils/formatPhone'
 import { useSelector, useDispatch } from 'react-redux'
-import { useCadastrarContatoMutation } from '../../redux/apiSlice'
+import { useAlterarContatoMutation, useCadastrarContatoMutation } from '../../redux/apiSlice'
 import { useGetCategoriaQuery } from '../../redux/apiSlice'
 import Swal from 'sweetalert2'
 
 const Contato = ({location}) => {
     
+    console.log(location.state.data)
+
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const { data: categoria } = useGetCategoriaQuery()
     const history = useHistory()
-    const [nome,setNome] = useState()
-    const { redirect } = useSelector(state => state.contatoReducer)
-    const [cadastrarContato, { isSuccess }] = useCadastrarContatoMutation()
+
+    const [cadastrarContato, { isSuccess: isSuccesscadastrarContato }] = useCadastrarContatoMutation()
+    const [alterarContato, { isSuccess: isSuccessalterarContato }] = useAlterarContatoMutation()
 
     const handleCadastrar = async (data) => {
 
@@ -27,21 +29,28 @@ const Contato = ({location}) => {
         })
     }
 
-    const handleAlterar = (data) => {
+    const handleAlterar = async (data) => {
 
-        console.log(data)
+        await alterarContato({
+            data: data,
+            idContato: location.state.data.id_contatos
+        })
 
-       /* dispatch(alterarContato({
-            data: {
-                data: data,
-                idContato: location.state.data.id_contatos
-            }
-        }))*/
     }
 
-    if (isSuccess) {
+    if (isSuccesscadastrarContato) {
         Swal.fire({
             text: "Contato Adicionado",
+            icon: "success",
+            confirmButtonText: "Ok"
+        }).then(() => {
+            history.push('/')
+        })
+    }
+
+    if (isSuccessalterarContato) {
+        Swal.fire({
+            text: "Contato Alterado",
             icon: "success",
             confirmButtonText: "Ok"
         }).then(() => {
@@ -54,16 +63,14 @@ const Contato = ({location}) => {
         if(history.location.pathname === '/AlterarContato'){
 
             const result = location.state.data
-            console.log(location.state.data)
-
-            setNome(result.nome)
 
             reset({
-                nome: result.nome,
-                email: result.email,
-                url_linkedin: result.url_linkedin,
-                url_github: result.url_github,
-                telefone: formatPhone(result.telefone)
+                nome: result.contato.nome,
+                email: result.contato.email,
+                url_linkedin: result.contato.url_linkedin,
+                url_github: result.contato.url_github,
+                telefone: formatPhone(result.contato.telefone),
+                categoria: result.contato.categorium.id_categoria
             })
         }
     }, [])
@@ -93,12 +100,11 @@ const Contato = ({location}) => {
                     history.location.pathname === '/NovoContato' ?
                     <Styles.Text size={"25px"} weigth={"bold"}>Novo Contato</Styles.Text>
                     :
-                    <Styles.Text size={"25px"} weigth={"bold"}>Alterar contato, {nome}</Styles.Text>
+                        <Styles.Text size={"25px"} weigth={"bold"}>Alterar contato, {location.state.data.contato.nome}</Styles.Text>
                 }
                 <Styles.Input
                     type='text' S
                     placeholder='Nome'
-                    value={nome}
                     validateErrors={errors?.nome ? true : false}
                     {...register("nome", {
                         required: true

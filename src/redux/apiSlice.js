@@ -20,6 +20,13 @@ export const apiSlice = createApi({
                 body: data
             })
         }),
+        alterarContato: builder.mutation({
+            query: (data) => ({
+                url: "/api/alterarContato",
+                method: "POST",
+                body: data
+            })
+        }),
         getContatos: builder.query({
             query: (data) => ({
                 url: `/api/contatos/${data}`,
@@ -40,5 +47,6 @@ export const {
     useLoginUserMutation,
     useGetContatosQuery,
     useGetCategoriaQuery,
-    useCadastrarContatoMutation
+    useCadastrarContatoMutation,
+    useAlterarContatoMutation
 } = apiSlice
