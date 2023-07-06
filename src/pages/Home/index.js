@@ -10,9 +10,7 @@ const Home = () => {
 
     const [pesquisar, setPesquisar] = useState('')
     const { user } = useSelector(state => state.userReducer)
-    const { data: result, isLoading, refetch } = useGetContatosQuery(user.id_usuario)
-
-    console.log(result)
+    const { data: result, isLoading } = useGetContatosQuery(user.id_usuario)
 
     const handleClick = () => {
         history.push({

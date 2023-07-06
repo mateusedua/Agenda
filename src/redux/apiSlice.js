@@ -18,14 +18,24 @@ export const apiSlice = createApi({
                 url: "/api/cadastrarContato",
                 method: "POST",
                 body: data
-            })
+            }),
+            invalidatesTags: ['Post']
         }),
         alterarContato: builder.mutation({
             query: (data) => ({
                 url: "/api/alterarContato",
-                method: "POST",
+                method: "PUT",
                 body: data
-            })
+            }),
+            invalidatesTags: ['Post']
+        }),
+        deleteContato: builder.mutation({
+            query: (data) => ({
+                url: "/api/deleteContato",
+                method: "DELETE",
+                body: data
+            }),
+            invalidatesTags: ['Post']
         }),
         getContatos: builder.query({
             query: (data) => ({
@@ -48,5 +58,6 @@ export const {
     useGetContatosQuery,
     useGetCategoriaQuery,
     useCadastrarContatoMutation,
-    useAlterarContatoMutation
+    useAlterarContatoMutation,
+    useDeleteContatoMutation
 } = apiSlice

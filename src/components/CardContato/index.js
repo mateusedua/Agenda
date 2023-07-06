@@ -4,13 +4,13 @@ import { TiEdit } from 'react-icons/ti'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
 import { useHistory } from 'react-router-dom'
 import formatPhone from '../../utils/formatPhone'
-import { useDispatch } from 'react-redux'
-import { deleteContato } from '../../redux/Contato/actions'
+import { useDeleteContatoMutation } from '../../redux/apiSlice'
+import Swal from 'sweetalert2'
 
 const CardContato = ({ data }) => {
 
     const history = useHistory()
-    const dispatch = useDispatch()
+    const [deleteContato, { isSuccess }] = useDeleteContatoMutation()
 
     const handleAlterar = (data) => {
         history.push({
@@ -19,11 +19,31 @@ const CardContato = ({ data }) => {
         })
     }
 
-    const handleDelete = (data) => {
+    const handleDelete = async (data) => {
 
-        dispatch(deleteContato({
+        await deleteContato({
             idcontato: data.id_contatos
-        }))
+        })
+
+    }
+
+    if (isSuccess) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Contato deletado'
+        })
     }
 
     return (
