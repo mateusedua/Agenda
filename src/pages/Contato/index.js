@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { isEmail } from 'validator'
 import formatPhone from '../../utils/formatPhone'
 import { useSelector, useDispatch } from 'react-redux'
-import { useCadastrarContatoMutation } from '../../redux/apiSlice'
+import { useAlterarContatoMutation, useCadastrarContatoMutation } from '../../redux/apiSlice'
 import { useGetCategoriaQuery } from '../../redux/apiSlice'
 import Swal from 'sweetalert2'
 
@@ -17,7 +17,8 @@ const Contato = ({location}) => {
     const history = useHistory()
     const [nome,setNome] = useState()
     const { redirect } = useSelector(state => state.contatoReducer)
-    const [cadastrarContato, { isSuccess }] = useCadastrarContatoMutation()
+    const [cadastrarContato, { isSuccess: isSuccesscadastrarContato }] = useCadastrarContatoMutation()
+    const [alterarContato, { isSuccess: isSuccessalterarContato }] = useAlterarContatoMutation()
 
     const handleCadastrar = async (data) => {
 
@@ -27,21 +28,28 @@ const Contato = ({location}) => {
         })
     }
 
-    const handleAlterar = (data) => {
+    const handleAlterar = async (data) => {
 
-        console.log(data)
+        await alterarContato({
+            data: data,
+            idContato: location.state.data.id_contatos
+        })
 
-       /* dispatch(alterarContato({
-            data: {
-                data: data,
-                idContato: location.state.data.id_contatos
-            }
-        }))*/
     }
 
-    if (isSuccess) {
+    if (isSuccesscadastrarContato) {
         Swal.fire({
             text: "Contato Adicionado",
+            icon: "success",
+            confirmButtonText: "Ok"
+        }).then(() => {
+            history.push('/')
+        })
+    }
+
+    if (isSuccessalterarContato) {
+        Swal.fire({
+            text: "Contato Alterado",
             icon: "success",
             confirmButtonText: "Ok"
         }).then(() => {
