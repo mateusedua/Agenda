@@ -6,43 +6,50 @@ import { useForm } from 'react-hook-form'
 import { isEmail } from 'validator'
 import formatPhone from '../../utils/formatPhone'
 import { useSelector, useDispatch } from 'react-redux'
-import { getCategoria, cadastrarContato, alterarContato } from '../../redux/Contato/actions'
-import { redirectState } from '../../redux/Contato/contatoSlice'
+import { useCadastrarContatoMutation } from '../../redux/apiSlice'
+import { useGetCategoriaQuery } from '../../redux/apiSlice'
+import Swal from 'sweetalert2'
 
 const Contato = ({location}) => {
     
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
+    const { data: categoria } = useGetCategoriaQuery()
     const history = useHistory()
-    const dispatch = useDispatch()
     const [nome,setNome] = useState()
+    const { redirect } = useSelector(state => state.contatoReducer)
+    const [cadastrarContato, { isSuccess }] = useCadastrarContatoMutation()
 
-    const { categoria, redirect } = useSelector(rootReducer => rootReducer.contatoReducer)
+    const handleCadastrar = async (data) => {
 
-    const handleCadastrar = (data) => {
-        dispatch(cadastrarContato({
-            data: {
-                data: data,
-                idUser: location.state.idUser
-            }
-        }))
+        await cadastrarContato({
+            data: data,
+            idUser: location.state.idUser            
+        })
     }
 
     const handleAlterar = (data) => {
 
         console.log(data)
 
-        dispatch(alterarContato({
+       /* dispatch(alterarContato({
             data: {
                 data: data,
                 idContato: location.state.data.id_contatos
             }
-        }))
+        }))*/
     }
 
+    if (isSuccess) {
+        Swal.fire({
+            text: "Contato Adicionado",
+            icon: "success",
+            confirmButtonText: "Ok"
+        }).then(() => {
+            history.push('/')
+        })
+    }
 
     useEffect(()=>{
-
-        dispatch(getCategoria())
 
         if(history.location.pathname === '/AlterarContato'){
 
@@ -61,11 +68,6 @@ const Contato = ({location}) => {
         }
     }, [])
 
-    if (redirect) {
-        dispatch(redirectState())
-        return history.push("/")
-    }
-    
     return(
         <Styles.Container>
             <Styles.Form>
@@ -112,7 +114,14 @@ const Contato = ({location}) => {
                     type='text'
                     validateErrors={errors?.email?.type === "validate" ? true : false}
                     placeholder='E-mail (opcional)'
-                    {...register("email", { validate: (value) => isEmail(value)})}
+                    {...register("email", {
+                        validate: (value) => {
+                            if (value === "") {
+                                return true
+                            }
+                            return isEmail(value)
+                        }
+                    })}
                 />
                 {
                     errors?.email?.type === "validate" ?

@@ -1,45 +1,28 @@
 import * as Styles from './style'
 import { useHistory } from 'react-router-dom'
 import CardContato from '../../components/CardContato'
-import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
-import { getContatos } from '../../redux/Contato/actions'
-import request from '../../utils/request'
+import { useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useGetContatosQuery } from '../../redux/apiSlice'
 
 const Home = () => {
-
     const history = useHistory()
-    const dispatch = useDispatch()
-
-    const { data } = useSelector(rootReducer => rootReducer.contatoReducer)
 
     const [pesquisar, setPesquisar] = useState('')
-    const result = JSON.parse(localStorage.getItem('user'))
-    const [idUser, setIdUser] = useState(null)
+    const { user } = useSelector(state => state.userReducer)
+    const { data: result, isLoading, refetch } = useGetContatosQuery(user.id_usuario)
 
-    useEffect(() => {
-
-        const getData = async () => {
-            const response = await request('http://localhost:5555/api/userFound', 'POST', {
-                data: result.replace('?', '')
-            })
-
-            setIdUser(response.data.id_usuario)
-
-            dispatch(getContatos({
-                idUsuario: response.data.id_usuario
-            }))
-
-        }
-        getData()
-    }, [dispatch])
-
+    console.log(result)
 
     const handleClick = () => {
         history.push({
             pathname: "/NovoContato",
-            state: { idUser: idUser }
+            state: { idUser: user.id_usuario }
         })
+    }
+
+    if (isLoading) {
+        return <div>Carregando...</div>
     }
 
     return (
@@ -56,7 +39,7 @@ const Home = () => {
             </Styles.Header>
             <Styles.Main>
                 {
-                    <CardContato data={data.filter(item => (item.contato.nome.toLowerCase().indexOf(pesquisar.toLocaleLowerCase()) > -1))} />
+                    <CardContato data={result.filter(item => (item.contato.nome.toLowerCase().indexOf(pesquisar.toLocaleLowerCase()) > -1))} />
                 }
             </Styles.Main>
         </Styles.Container>

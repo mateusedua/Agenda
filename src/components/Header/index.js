@@ -1,5 +1,5 @@
 import * as Styles from './style'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { logoutUser } from '../../redux/user/userSlice'
 
@@ -25,14 +25,15 @@ const Header = () => {
         })
     }
 
+    const { user } = useSelector(state => state.userReducer)
+
     return(
         <Styles.Container>
-            <Styles.Text>Olá</Styles.Text>
             <Styles.Button onClick={handleSair}>
                 Sair
             </Styles.Button>
             <Styles.Button onClick={handlePerfil}>
-                Perfil
+                {user.nome}
             </Styles.Button>
             <Styles.Button onClick={handleHome}>
                 Home
