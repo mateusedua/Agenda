@@ -1,4 +1,4 @@
-import * as Styles from './style'
+import { Container } from './style'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
 import { logoutUser } from '../../redux/user/userSlice'
@@ -18,8 +18,8 @@ const Header = () => {
     const { user } = useSelector(state => state.userReducer)
 
     return(
-        <Styles.Container>
-            <Styles.Nav>
+        <Container>
+            {/*<Styles.Nav>
 
                 <Styles.LinkHeader size={'25px'} to="/">Home</Styles.LinkHeader>
                 <div>
@@ -36,8 +36,8 @@ const Header = () => {
                         </Styles.ItemDown>
                     }
                 </div>
-            </Styles.Nav>
-        </Styles.Container>
+                </Styles.Nav> */}
+        </Container>
     )
 }
 
