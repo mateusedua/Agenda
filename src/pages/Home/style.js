@@ -1,8 +1,6 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
-    width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -17,6 +15,14 @@ export const Header = styled.div`
     flex-direction: column;
     border-bottom: 3px solid #BCBCBC;
     margin-bottom: 30px;
+    
+    @media screen and (max-width: 1012px){
+        width: 80%;
+    }
+    
+    @media screen and (max-width:480px){
+        width: 90%;
+    }
 `
 
 export const SectionInputSelect = styled.section`
@@ -24,6 +30,8 @@ export const SectionInputSelect = styled.section`
     display: flex;
     align-items: end;
     height: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 `
 
 export const SectionButtonHeader = styled.section`
@@ -32,6 +40,7 @@ export const SectionButtonHeader = styled.section`
     display: flex;
     align-items: center;
     margin-top: 10px;
+    margin-bottom: 20px;
 `
 export const Button = styled.button`
     width: 200px;
@@ -70,8 +79,16 @@ export const Input = styled.input`
 `
 
 export const Main = styled.div`
-    height: 100%;
+    height: 530px;
     width: 60%;
     overflow-y: scroll;
     margin-bottom: 10px;
+
+    @media screen and (max-width: 1012px){
+        width: 80%;
+    }
+
+    @media screen and (max-width:480px){
+        width: 90%;
+    }
 `
