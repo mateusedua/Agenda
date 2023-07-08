@@ -1,16 +1,13 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
-    width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    overflow: scroll;
 `
 
 export const Header = styled.div`
-    width: 60%;
+    width: 50%;
     height: 40%;
     display: flex;
     align-items: end;
@@ -24,6 +21,8 @@ export const SectionInputSelect = styled.section`
     display: flex;
     align-items: end;
     height: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 `
 
 export const SectionButtonHeader = styled.section`
@@ -32,11 +31,11 @@ export const SectionButtonHeader = styled.section`
     display: flex;
     align-items: center;
     margin-top: 10px;
+    margin-bottom: 20px;
 `
 export const Button = styled.button`
-    width: 200px;
-    height: 60px;
-    font-size: 20px;
+    padding: 16px;
+    font-size: ${({ theme }) => theme.size_desktop};
     font-weight: bold;
     color: #5CA4EA;
     display: flex;
@@ -46,7 +45,6 @@ export const Button = styled.button`
     background-color: #E5E5E5;
     border: 2px solid #5CA4EA;
     border-radius:5px;
-    cursor: pointer;
 
     &:hover{
         color: white;
@@ -70,8 +68,8 @@ export const Input = styled.input`
 `
 
 export const Main = styled.div`
-    height: 100%;
-    width: 60%;
     overflow-y: scroll;
+    width: 50%;
     margin-bottom: 10px;
+     
 `

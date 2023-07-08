@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { dataUser, loginUser } from "./actions";
 import request from "../../utils/request";
 import { apiSlice } from "../apiSlice";
 
@@ -28,22 +27,10 @@ const userSlice = createSlice({
         logoutUser: (state, action) => {
             localStorage.removeItem('user')
             state.validUser = false
-        },
-        userFound: (state, action) => {
-            state.validUser = true
-            state.isPending = false
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(loginUser.fulfilled, (state, action) => {
-            if (action.payload === 200) {
-                state.validUser = true
-            }
-            state.userNotFound = true
-        })
-            .addCase(dataUser.fulfilled, (state, action) => {
-                state.dataUser = action.payload
-            })
+        builder
             .addMatcher(apiSlice.endpoints.loginUser.matchFulfilled, (state, action) => {
                 localStorage.setItem('user', action.payload)
                 state.validUser = true
@@ -57,6 +44,6 @@ const userSlice = createSlice({
     }
 })
 
-export const { logoutUser, userFound } = userSlice.actions
+export const { logoutUser } = userSlice.actions
 
 export default userSlice.reducer

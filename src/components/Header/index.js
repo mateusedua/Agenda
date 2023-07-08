@@ -1,4 +1,4 @@
-import { Container } from './style'
+import { Container, Nav, LinkHeader, DropDown, ItemDown, Sair } from './style'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
 import { logoutUser } from '../../redux/user/userSlice'
@@ -19,24 +19,24 @@ const Header = () => {
 
     return(
         <Container>
-            {/*<Styles.Nav>
+            <Nav>
 
-                <Styles.LinkHeader size={'25px'} to="/">Home</Styles.LinkHeader>
+                <LinkHeader size={({ theme }) => theme.size_desktop} to="/">Home</LinkHeader>
                 <div>
 
-                    <Styles.DropDown onClick={(e) => setIsOpen(!isOpen)}>
+                    <DropDown onClick={(e) => setIsOpen(!isOpen)}>
                         {user.nome}
                         <AiFillCaretDown width={20} height={20} />
-                    </Styles.DropDown>
+                    </DropDown>
                     {
                         isOpen &&
-                        <Styles.ItemDown>
-                            <Styles.LinkHeader to="/Perfil" onClick={(e) => setIsOpen(!isOpen)}>Perfil</Styles.LinkHeader>
-                            <Styles.Sair onClick={handleSair}>Sair</Styles.Sair>
-                        </Styles.ItemDown>
+                        <ItemDown>
+                            <LinkHeader to="/Perfil" onClick={(e) => setIsOpen(!isOpen)}>Perfil</LinkHeader>
+                            <Sair onClick={handleSair}>Sair</Sair>
+                        </ItemDown>
                     }
                 </div>
-                </Styles.Nav> */}
+            </Nav>
         </Container>
     )
 }
