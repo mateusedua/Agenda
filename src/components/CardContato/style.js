@@ -5,9 +5,9 @@ import { styled } from "styled-components";
 export const MainCard = styled.div`
     width: 100%;
     background-color: white;
-    height: 200px;
     margin-top: 10px;
     display: flex;
+    padding: 2.2rem;
     flex-direction: row;
 `
 

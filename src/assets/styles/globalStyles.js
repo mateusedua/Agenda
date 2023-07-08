@@ -7,9 +7,24 @@ export default createGlobalStyle`
         box-sizing:border-box;
         font-family: 'Roboto',sans-serif;
     }
-    
+
+    html {
+        font-size: 60%;
+    }
+
+    @media screen and (max-width: 768px) {
+        html {
+            font-size: 50%;
+        }
+    }
+
+    @media screen and (min-width: 769px) and (max-width: 1024px){
+        html {
+            font-size: 60%;
+        }
+    }
+
     body {
-        font-size: 16px;
         background: ${({ theme }) => theme.backgroudColor};
     }
 

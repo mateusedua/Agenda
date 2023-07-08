@@ -21,7 +21,7 @@ const Header = () => {
         <Container>
             <Nav>
 
-                <LinkHeader size={'25px'} to="/">Home</LinkHeader>
+                <LinkHeader size={({ theme }) => theme.size_desktop} to="/">Home</LinkHeader>
                 <div>
 
                     <DropDown onClick={(e) => setIsOpen(!isOpen)}>
