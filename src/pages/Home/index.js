@@ -26,14 +26,10 @@ const Home = () => {
     return (
         <Styles.Container>
             <Styles.Header>
-                <Styles.SectionInputSelect>
-                    <Styles.Input type="text" placeholder="Pesquisar contato ..." value={pesquisar} onChange={event => setPesquisar(event.target.value)} />
-                </Styles.SectionInputSelect>
-                <Styles.SectionButtonHeader>
+                <Styles.Input type="text" placeholder="Pesquisar contato ..." value={pesquisar} onChange={event => setPesquisar(event.target.value)} />
                     <Styles.Button onClick={handleClick}>
                         Novo Contato
-                    </Styles.Button>
-                </Styles.SectionButtonHeader>
+                </Styles.Button>
             </Styles.Header>
             <Styles.Main>
                 {
