@@ -4,35 +4,30 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
+    height: calc(100vh - 160px);
 `
 
 export const Header = styled.div`
-    width: 50%;
-    height: 40%;
+    width: 60%;
+    height: 30%;
+    min-height: 20%;
     display: flex;
-    align-items: end;
+    align-items: flex-start;
+    justify-content: center;
     flex-direction: column;
     border-bottom: 3px solid #BCBCBC;
     margin-bottom: 30px;
+    gap: 20px;
+    
+    @media screen and (max-width: 1012px){
+        width: 80%;
+    }
+    
+    @media screen and (max-width:480px){
+        width: 90%;
+    }
 `
 
-export const SectionInputSelect = styled.section`
-    width: 100%;
-    display: flex;
-    align-items: end;
-    height: 50%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-`
-
-export const SectionButtonHeader = styled.section`
-    width: 100%;
-    height: 35%;
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
-`
 export const Button = styled.button`
     padding: 16px;
     font-size: ${({ theme }) => theme.size_desktop};
@@ -55,7 +50,7 @@ export const Button = styled.button`
 
 export const Input = styled.input`
     width: 100%;
-    height: 60px;
+    padding: 1.2rem;
     border-radius: 20px;
     font-size: 20px;
     text-indent: 15px;
@@ -68,8 +63,17 @@ export const Input = styled.input`
 `
 
 export const Main = styled.div`
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
     overflow-y: scroll;
-    width: 50%;
-    margin-bottom: 10px;
-     
+    @media screen and (max-width: 1012px){
+        width: 80%;
+    }
+
+    @media screen and (max-width:480px){
+        width: 90%;
+    }
 `

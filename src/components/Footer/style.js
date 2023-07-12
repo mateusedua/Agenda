@@ -2,9 +2,9 @@ import styled from 'styled-components'
 
 
 export const Container = styled.div`
-    height: 80px;
+    padding:1.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.9rem;
+    margin-top: auto;
 `
