@@ -53,15 +53,15 @@ const CardContato = ({ data }) => {
                     <Styles.Section>
                         <Styles.SectionInformationHeader>
                             <Styles.DivCategory>
-                                <Styles.P size={'28px'} color={'#222222'} weight={'bold'}>
+                                <Styles.P size={'2.5rem'} color={'#222222'} weight={'bold'}>
                                     {data.contato.nome}
                                 </Styles.P>
-                                <Styles.P size={'20px'} bg={'#E0E3FF'} color={'#5061FC'} weight={'bold'} pd={'10px'} br={'5px'}>
+                                <Styles.P size={'2rem'} bg={'#E0E3FF'} color={'#5061FC'} weight={'bold'} pd={'10px'} br={'5px'}>
                                     {data.contato.categorium.nome}
                                 </Styles.P>
                             </Styles.DivCategory>
                             <Styles.DivCategory>
-                                <Styles.P color={'#BCBCBC'} size={'24px'}>
+                                <Styles.P color={'#BCBCBC'} size={'2rem'}>
                                     {data.contato.email}
                                 </Styles.P>
                             </Styles.DivCategory>
@@ -69,10 +69,10 @@ const CardContato = ({ data }) => {
                                 {
                                     data.contato.telefone ?
                                         <>
-                                <Styles.P color={'#5061FC'} size={'24px'}>
+                                            <Styles.P color={'#5061FC'} size={'2rem'}>
                                     Telefone :
                                 </Styles.P>
-                                <Styles.P color={'#BCBCBC'} size={'24px'}>
+                                            <Styles.P color={'#BCBCBC'} size={'2rem'}>
                                                 {formatPhone(data.contato.telefone)}
                                 </Styles.P>
                                         </>

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { cadastrarContato, alterarContato, deleteContato } from "./actions";
 
 const initialState = {
     data: [],
@@ -11,17 +10,6 @@ export const contatoSlice = createSlice({
     initialState,
     reducers: {
         redirectState: (state, action) => {
-            state.redirect = true
-        }
-    },
-    extraReducers: {
-        [cadastrarContato.fulfilled]: (state, action) => {
-            state.redirect = true
-        },
-        [alterarContato.fulfilled]: (state, action) => {
-            state.redirect = true
-        },
-        [deleteContato.fulfilled]: (state, action) => {
             state.redirect = true
         }
     }

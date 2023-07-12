@@ -29,9 +29,8 @@ export const Header = styled.div`
 `
 
 export const Button = styled.button`
-    width: 200px;
-    height: 60px;
-    font-size: 20px;
+    padding: 16px;
+    font-size: ${({ theme }) => theme.size_desktop};
     font-weight: bold;
     color: #5CA4EA;
     display: flex;
@@ -41,7 +40,6 @@ export const Button = styled.button`
     background-color: #E5E5E5;
     border: 2px solid #5CA4EA;
     border-radius:5px;
-    cursor: pointer;
 
     &:hover{
         color: white;

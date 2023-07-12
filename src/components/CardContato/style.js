@@ -7,6 +7,7 @@ export const MainCard = styled.div`
     background-color: white;
     padding: 1rem;
     display: flex;
+    padding: 2.2rem;
     flex-direction: row;
 `
 
