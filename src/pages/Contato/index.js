@@ -67,7 +67,7 @@ const Contato = ({location}) => {
                 email: result.contato.email,
                 url_linkedin: result.contato.url_linkedin,
                 url_github: result.contato.url_github,
-                telefone: formatPhone(result.contato.telefone),
+                telefone: result.contato.telefone ? formatPhone(result.contato.telefone) : '',
                 categoria: result.contato.categorium.id_categoria
             })
         }

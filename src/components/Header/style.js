@@ -2,29 +2,14 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-    height: 80px;
+    padding: 1rem;
     border-bottom: 2px solid #BCBCBC;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 `
 
-export const Button = styled.button`
-    width: 150px;
-    height: 50px;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    background-color: #5CA4EA;
-    border: none;
-    border-radius:5px;
-    cursor: pointer;
-    margin-right: 10px;
 
-    &:hover{
-        background-color: #83B7E5;
-    }
-`
 export const Nav = styled.nav`
     display: flex;
     align-items: center;
@@ -34,7 +19,7 @@ export const Nav = styled.nav`
 `
 
 export const DropDown = styled.div`
-    font-size: 25px;
+    font-size: 1.5rem;
     font-weight: 700;
     padding: 7px;
     display: flex;
@@ -54,7 +39,7 @@ export const ItemDown = styled.div`
     background-color: white;
     width: 130px;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1.3rem;
     display: flex;
     flex-direction: column;
     gap: 7px;
