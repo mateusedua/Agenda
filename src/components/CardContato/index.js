@@ -33,6 +33,8 @@ const CardContato = ({ data }) => {
             position: 'top-end',
             showConfirmButton: false,
             timer: 5000,
+            padding: '3.5rem',
+
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -53,10 +55,10 @@ const CardContato = ({ data }) => {
                     <Styles.Section>
                         <Styles.SectionInformationHeader>
                             <Styles.DivCategory>
-                                <Styles.P size={'2.5rem'} color={'#222222'} weight={'bold'}>
+                                <Styles.P size={'2.5rem'} color={'#222222'} weight={'bold'} quebra={true}>
                                     {data.contato.nome}
                                 </Styles.P>
-                                <Styles.P size={'2rem'} bg={'#E0E3FF'} color={'#5061FC'} weight={'bold'} pd={'10px'} br={'5px'}>
+                                <Styles.P size={'2rem'} bg={'#E0E3FF'} color={'#5061FC'} weight={'bold'} pd={'10px'} br={'5px'} quebra={false}>
                                     {data.contato.categorium.nome}
                                 </Styles.P>
                             </Styles.DivCategory>
@@ -65,21 +67,21 @@ const CardContato = ({ data }) => {
                                     {data.contato.email}
                                 </Styles.P>
                             </Styles.DivCategory>
-                            <Styles.DivCategory>
                                 {
                                     data.contato.telefone ?
                                         <>
+                                        <Styles.DivCategory>
                                             <Styles.P color={'#5061FC'} size={'2rem'}>
                                     Telefone :
                                 </Styles.P>
                                             <Styles.P color={'#BCBCBC'} size={'2rem'}>
                                                 {formatPhone(data.contato.telefone)}
                                 </Styles.P>
+                                        </Styles.DivCategory>
                                         </>
                                         :
                                         null
-                                }
-                            </Styles.DivCategory>
+                            }
                             <Styles.DivCategory>
                                 {
                                     data.contato.url_linkedin ?
@@ -106,7 +108,7 @@ const CardContato = ({ data }) => {
                             </Styles.DivCategory>
                         </Styles.SectionInformationHeader>
                     </Styles.Section>
-                    <Styles.Section justify={'end'} items={'center'}>
+                    <Styles.SectionFooterCard>
                         <div>
                             <Styles.Button onClick={() => handleAlterar(data)}>
                                 <TiEdit style={{
@@ -125,7 +127,7 @@ const CardContato = ({ data }) => {
                                 }} />
                             </Styles.Button>
                         </div>
-                    </Styles.Section>
+                    </Styles.SectionFooterCard>
                 </Styles.MainCard>
             )
         })

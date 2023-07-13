@@ -98,7 +98,7 @@ const Contato = ({location}) => {
                     history.location.pathname === '/NovoContato' ?
                     <Styles.Text size={"25px"} weigth={"bold"}>Novo Contato</Styles.Text>
                     :
-                        <Styles.Text size={"25px"} weigth={"bold"}>Alterar contato, {location.state.data.contato.nome}</Styles.Text>
+                        <Styles.Text size={"25px"} weigth={"bold"} quebra={true}>Alterar contato, {location.state.data.contato.nome}</Styles.Text>
                 }
                 <Styles.Input
                     type='text' S
