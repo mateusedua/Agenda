@@ -9,18 +9,34 @@ import { useForm } from 'react-hook-form'
 const Perfil = () => {
 
     const { user } = useSelector(state => state.userReducer)
-    const { data: data, isLoading } = useGetDataUserQuery(user.id_usuario)
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { data: dataUser, isLoading } = useGetDataUserQuery(user.id_usuario)
+    const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const [openSenha, setOpenSenha] = useState(false)
     const [openConfirmar, setOpenConfirmar] = useState(false)
 
-    const submit = (data) => {
+    console.log(dataUser)
 
+    const submit = (data) => {
+        console.log(data)
     }
+
+    const checkKeyDown = (event) => {
+        if (event.key === "Enter") {
+        }   
+    }
+
+    useEffect(() => {
+        reset({
+            nome: dataUser?.nome,
+            senha: dataUser?.senha
+        })
+    }, [dataUser])
 
     if (isLoading) {
         return <h1>carregando...</h1>
     }
+
+
 
     return (
         <Container>
@@ -42,24 +58,28 @@ const Perfil = () => {
                         />
                         <span>Voltar</span>
                     </Link>
-                    <p>Olá, {data.nome}</p>
-                    <p>Email: {data.email}</p>
+                    <p>Olá, {dataUser.nome}</p>
+                    <p>Email: {dataUser.email}</p>
                 </Header>
                 <Main>
-                    <Input placeholder="Nome" />
+                    <Input placeholder="Nome"
+                        {...register('nome', { required: true })}
+                    />
                     <DivSenha>
                         <Input placeholder="Senha"
                             type={openSenha ? 'text' : 'password'}
+                            {...register('senha', { required: true })}
                         />
                         <IconVision onClick={() => setOpenSenha(!openSenha)} />
                     </DivSenha>
                     <DivSenha>
                         <Input placeholder="Confirmar senha"
                             type={openConfirmar ? 'text' : 'password'}
+                            {...register('confirmarSenha', { required: true })}
                         />
                         <IconVision onClick={() => setOpenConfirmar(!openConfirmar)} />
                     </DivSenha>
-                    <Button onClick={() => handleSubmit(submit)()}>
+                    <Button onClick={() => handleSubmit(submit)()} onKeyDown={e => checkKeyDown(e)}>
                         Alterar
                     </Button>
                 </Main>
