@@ -20,22 +20,18 @@ export const Header = styled.div`
     margin-bottom: 30px;
     gap: 20px;
     
-    @media screen and (max-width: 1012px){
+    @media screen ${({ theme }) => theme.size_tablet}{
         width: 80%;
     }
-
-    @media screen and (max-width: 768px){
-         width: 90%;
-    }
     
-    @media screen and (max-width:480px){
-        width: 90%;
+    @media screen ${({ theme }) => theme.size_mobile}{
+         width: 90%;
     }
 `
 
 export const Button = styled.button`
     padding: 1.7rem;
-    font-size: ${({ theme }) => theme.size_desktop};
+    font-size: 2.5rem;
     font-weight: bold;
     color: #5CA4EA;
     display: flex;
@@ -75,15 +71,12 @@ export const Main = styled.div`
     gap: 7px;
     overflow-y: scroll;
 
-    @media screen and (max-width: 1012px){
+    @media screen ${({ theme }) => theme.size_tablet}{
         width: 80%;
     }
-
-    @media screen and (max-width:480px){
-        width: 90%;
-    }
-
-    @media screen and (max-width: 768px){
+    
+    @media screen ${({ theme }) => theme.size_mobile}{
          width: 90%;
     }
+
 `
