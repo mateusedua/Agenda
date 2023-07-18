@@ -12,18 +12,18 @@ export default createGlobalStyle`
         font-size: 60%;
     }
 
-    @media screen and (max-width: 768px) {
-        html {
-            font-size: 50%;
-        }
-    }
 
-    @media screen and (min-width: 769px) and (max-width: 1024px){
+    @media screen ${({ theme }) => theme.size_tablet} {
         html {
             font-size: 60%;
         }
     }
-
+    @media screen ${({ theme }) => theme.size_mobile} {
+        html {
+            font-size: 50%;
+        }
+    }
+    
     body {
         background: ${({ theme }) => theme.backgroudColor};
     }
