@@ -45,6 +45,14 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: ['Post']
         }),
+        deleteUser: builder.mutation({
+            query: (data) => ({
+                url: "/api/deleteUser",
+                method: "DELETE",
+                body: data
+            }),
+            invalidatesTags: ['Post']
+        }),
         getContatos: builder.query({
             query: (data) => ({
                 url: `/api/contatos/${data}`,
@@ -74,5 +82,7 @@ export const {
     useCadastrarContatoMutation,
     useAlterarContatoMutation,
     useDeleteContatoMutation,
-    useGetDataUserQuery
+    useGetDataUserQuery,
+    useAlterarUserMutation,
+    useDeleteUserMutation
 } = apiSlice
