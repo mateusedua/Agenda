@@ -37,6 +37,14 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: ['Post']
         }),
+        alterarUser: builder.mutation({
+            query: (data) => ({
+                url: "/api/alterarUser",
+                method: "PUT",
+                body: data
+            }),
+            invalidatesTags: ['Post']
+        }),
         getContatos: builder.query({
             query: (data) => ({
                 url: `/api/contatos/${data}`,
@@ -48,7 +56,13 @@ export const apiSlice = createApi({
                 url: "/api/categoria"
             }),
             providesTags: ['Post']
-        })
+        }),
+        getDataUser: builder.query({
+            query: (data) => ({
+                url: `/api/dataUser/${data}`
+            }),
+            providesTags: ['Post']
+        }),
     })
 })
 
@@ -59,5 +73,6 @@ export const {
     useGetCategoriaQuery,
     useCadastrarContatoMutation,
     useAlterarContatoMutation,
-    useDeleteContatoMutation
+    useDeleteContatoMutation,
+    useGetDataUserQuery
 } = apiSlice

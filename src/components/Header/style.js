@@ -2,7 +2,8 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-    padding: 1rem;
+    height: 80px;
+    max-height: 80px;
     border-bottom: 2px solid #BCBCBC;
     display: flex;
     justify-content: flex-end;
@@ -34,7 +35,7 @@ export const Nav = styled.nav`
 `
 
 export const DropDown = styled.div`
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: 700;
     padding: 7px;
     display: flex;
@@ -52,9 +53,9 @@ export const DropDown = styled.div`
 export const ItemDown = styled.div`
     position: absolute;
     background-color: white;
-    width: 130px;
+
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 2rem;
     display: flex;
     flex-direction: column;
     gap: 7px;

@@ -4,13 +4,14 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: calc(100vh - 160px);
+    height: calc(100vh - 140px);
+    min-height: 700px;
 `
 
 export const Header = styled.div`
     width: 60%;
     height: 30%;
-    min-height: 20%;
+    min-height: 160px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -19,18 +20,18 @@ export const Header = styled.div`
     margin-bottom: 30px;
     gap: 20px;
     
-    @media screen and (max-width: 1012px){
+    @media screen ${({ theme }) => theme.size_tablet}{
         width: 80%;
     }
     
-    @media screen and (max-width:480px){
-        width: 90%;
+    @media screen ${({ theme }) => theme.size_mobile}{
+         width: 90%;
     }
 `
 
 export const Button = styled.button`
-    padding: 16px;
-    font-size: ${({ theme }) => theme.size_desktop};
+    padding: 1.7rem;
+    font-size: 2.5rem;
     font-weight: bold;
     color: #5CA4EA;
     display: flex;
@@ -50,7 +51,7 @@ export const Button = styled.button`
 
 export const Input = styled.input`
     width: 100%;
-    padding: 1.2rem;
+    padding: 1.8rem;
     border-radius: 20px;
     font-size: 20px;
     text-indent: 15px;
@@ -69,11 +70,13 @@ export const Main = styled.div`
     flex-direction: column;
     gap: 7px;
     overflow-y: scroll;
-    @media screen and (max-width: 1012px){
+
+    @media screen ${({ theme }) => theme.size_tablet}{
         width: 80%;
     }
-
-    @media screen and (max-width:480px){
-        width: 90%;
+    
+    @media screen ${({ theme }) => theme.size_mobile}{
+         width: 90%;
     }
+
 `

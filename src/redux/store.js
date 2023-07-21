@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import logger from "redux-logger";
 import thunk from "redux-thunk";
+import logger from "redux-logger";
 import { apiSlice } from "./apiSlice";
 import rootReducer from "./rootReducer";
 
