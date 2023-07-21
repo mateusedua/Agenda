@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { FaLowVision } from 'react-icons/fa'
-
+import { RiDeleteBin6Line } from 'react-icons/ri'
 
 export const Container = styled.div`
     width: 100%;
@@ -16,6 +16,15 @@ export const Form = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
+
+    @media screen ${({ theme }) => theme.size_tablet}{
+        width: 60%;
+    }
+    
+    @media screen ${({ theme }) => theme.size_mobile}{
+         width: 90%;
+    }
+
 `
 
 export const Header = styled.div`
@@ -28,6 +37,9 @@ export const Header = styled.div`
         font-size: 2.4rem;
         margin-top: 10px;
     }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 `
 
 export const Main = styled.div`
@@ -36,6 +48,11 @@ export const Main = styled.div`
     display: flex;
     flex-direction: column;
     gap: 7px;
+
+    span {
+        color: red;
+        font-size: 1.9rem;
+    }
 `
 
 export const Input = styled.input`
@@ -56,6 +73,7 @@ export const Button = styled.button`
     width: 100%;
     height: 60px;
     font-size: 2.2rem;
+    font-weight: 700;
     border: none;
     background-color: #5CA4EA;
     border-radius: 5px;
@@ -78,4 +96,11 @@ export const IconVision = styled(FaLowVision)`
     margin-top: 20px;
     right: 15px;
     cursor: pointer;
+`
+
+export const IconLixeira = styled(RiDeleteBin6Line)`
+    cursor: pointer;
+    width: 37px;
+    height: 37px;
+    color: red;
 `
